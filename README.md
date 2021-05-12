@@ -2,6 +2,7 @@
 Development of a simplified model for a one-dimensional EDL mission in an artificially generated Mars atmosphere from scratch, using Python.
 
 ***
+## Description and code explanation
 Thanks to *webplotdigitizer*, temperature data measured on the Viking 1 mission has been extracted into a .csv file: *viking1.csv*. After importing and normalizing the data with 
 *Pandas*, a 7th degree polynomial fit has been implemented to obtain a continous temperature function for the first 120 km of altitude.
 
@@ -12,9 +13,15 @@ The simulation has been divided into three different stages (with their own gove
 2. **Stage 2**: Parachute descent. Drag forces from both the parachute & the heat shield are considered. Aerodynamic interference between both is neglected to simplify the model, assuming long parachute chords.
 3. **Stage 3**: Powered descent: Rocket equation is governing the last stage of descent, assuming a constant gas exhaust speed, without parachute.
 
+These equations need a time-integration scheme. The simplest 1st order scheme has been implemented: Euler. For a better control of errors, higher order schemes should be considered.
+
+## Results
 Results show some disparity with the Perseverance mission official data. Most of the differences are due to some of the simplifications, as well as considering the descent control as an open loop without sensor data feedback, which fixes the conditions to their initial values.
 
 For the aerodynamic coefficients, the Prandtl-Glauer correction has been implemented. Since there's a known singularity at Mach speeds close to 1, two ranges have been identified and assigned a fixed value, which act as a step function between Mach 0.7 and 1.3
-***
 
+
+***
+## Important
 By no means this simulation must be considered as an accurate representation of real world phenomena. It's been developed for education purposes, and it could only serve as a preliminary design tool based on previous data.
+***
